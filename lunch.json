@@ -1,0 +1,68 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "FastAPI",
+        "type": "debugpy",
+        "request": "launch",
+        "module": "uvicorn",
+        "args": ["backend.src.app.main:app", "--reload"],
+        "jinja": true
+      },
+  
+      {
+        "name": "Pytest: Debug All Tests",
+        "type": "python",
+        "request": "launch",
+        "module": "pytest",
+        "args": [
+          "--color=yes", // Enable colored test output
+          "-vv", // Increase verbosity for detailed logs
+          "${workspaceFolder}" // Run tests in the workspace root
+        ],
+        "console": "integratedTerminal",
+        "justMyCode": true,
+        "env": {
+          "PYTHONPATH": "${workspaceFolder}" // Add workspace to PYTHONPATH
+        },
+        "preLaunchTask": "pytest" // Optionally run `pytest` task to discover tests
+      },
+      {
+        "name": "Pytest: Debug Current File",
+        "type": "python",
+        "request": "launch",
+        "module": "pytest",
+        "args": [
+          "--color=yes",
+          "-v", // Moderate verbosity
+          "${file}" // Run tests in the current file only
+        ],
+        "console": "integratedTerminal",
+        "justMyCode": true,
+        "env": {
+          "PYTHONPATH": "${workspaceFolder}"
+        }
+      },
+      {
+        "name": "Pytest: Debug Specific Test",
+        "type": "python",
+        "request": "launch",
+        "module": "pytest",
+        "args": [
+          "--color=yes",
+          "-v",
+          "${file}:${line}" // Run the test at the specified line number
+        ],
+        "console": "integratedTerminal",
+        "justMyCode": true,
+        "env": {
+          "PYTHONPATH": "${workspaceFolder}"
+        },
+        "preLaunchTask": "pytest --collect-only" // Optionally collect tests beforehand
+      }
+    ]
+  }
+  
